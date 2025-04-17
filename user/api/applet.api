@@ -1,0 +1,72 @@
+syntax = "v1"
+
+type (
+	RegisterRequest {
+		Username         string `json:"username"`
+		Mobile           string `json:"mobile"`
+		Password         string `json:"password"`
+		VerificationCode string `json:"verificationCode"`
+	}
+	RegisterResponse {
+		UserId int64  `json:"userId"`
+		Token  string `json:"token"`
+	}
+	VerificationRequest {
+		Mobile string `json:"mobile"`
+	}
+	VerificationResponse  {}
+	MobileLoginRequest {
+		Mobile           string `json:"mobile"`
+		VerificationCode string `json:"verificationCode"`
+	}
+	UsernameLoginRequest {
+		Username string
+		Password string
+	}
+	LoginResponse {
+		UserId int64  `json:"userId"`
+		Token  string `json:"token"`
+	}
+	UserInfoResponse {
+		UserId   int64  `json:"userId"`
+		Username string `json:"username"`
+		Avatar   string `json:"avatar"`
+	}
+	UserInfoUpdateRequest {
+		Username string `json:"username" optional`
+		Passwrod string `json:"password"`
+		Mobile   string `json:"mobile"`
+		Avatar   string `json:"avatar"`
+	}
+)
+
+@server (
+	prefix: v1
+)
+service applet-api {
+	@handler RegisterHandler
+	post /register (RegisterRequest) returns (RegisterResponse)
+
+	@handler VerificationHandler
+	post /verification (VerificationRequest) returns (VerificationResponse)
+
+	@handler UsernameLoginHandler
+	post /usernameLogin (UsernameLoginRequest) returns (LoginResponse)
+
+	@handler MobileLoginHandler
+	post /mobileLogin (MobileLoginRequest) returns (LoginResponse)
+}
+
+@server (
+	prefix:    v1/user
+	signature: true
+	jwt:       Auth
+)
+service applet-api {
+	@handler UserInfoHandler
+	get /info returns (UserInfoResponse)
+
+	@handler UserInfoUpdateHandler
+	post /update (UserInfoUpdateRequest) returns (UserInfoResponse)
+}
+

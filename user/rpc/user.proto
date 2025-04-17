@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package service;
+option go_package = "./service";
+
+// 定义服务 User
+service User {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc FindById(FindByIdRequest) returns (FindByIdResponse);
+  rpc FindByMobile(FindByMobileRequest) returns (FindByMobileResponse);
+  rpc SendSms(SendSmsRequest) returns (SendSmsResponse);
+  rpc MobileLogin(MobileLoginRequest)returns (LoginResponse);
+  rpc UsernameLogin(UsernameLoginRequest)returns (LoginResponse);
+  rpc UserInfoUpdate(UserInfoUpdateRequest) returns (UserInfoResponse);
+}
+
+// Register 相关消息体
+message RegisterRequest {
+  string username = 1;
+  string mobile = 2;
+  optional string avatar = 3;
+  string password = 4;
+  string verificationCode=5;
+}
+
+
+message RegisterResponse {
+  int64  userId=2;
+  string token=3;
+}
+
+// FindById 相关消息体
+message FindByIdRequest {
+  int64 userId = 1;
+}
+
+message FindByIdResponse {
+  UserInfoResponse userInfo=1;
+}
+
+// FindByMobile 相关消息体
+message FindByMobileRequest {
+  string mobile = 1;
+}
+
+message FindByMobileResponse {
+  UserInfoResponse userInfo=1;
+}
+
+// SendSms 相关消息体
+message SendSmsRequest {
+  string mobile = 1; // 手机号
+  string content = 2; // 短信内容
+}
+
+message SendSmsResponse {
+}
+
+message MobileLoginRequest{
+  string mobile = 2;
+  string verification=3;
+}
+message UsernameLoginRequest{
+  string username=1;
+  string password=2;
+}
+
+message LoginResponse{
+  string token=1;
+  int64 userId=2;
+}
+
+message UserInfoResponse{
+  int64 userId = 1;
+  string username = 2;
+  string mobile = 3;
+  string avatar = 4;
+}
+
+message UserInfoUpdateRequest{
+  string username = 1;
+  string mobile = 2;
+  string password = 3;
+  string avatar = 4;
+}
