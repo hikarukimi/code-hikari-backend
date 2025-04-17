@@ -5,11 +5,10 @@
 package server
 
 import (
+	"code-hikari/user/rpc/internal/logic"
+	"code-hikari/user/rpc/internal/svc"
+	"code-hikari/user/rpc/service"
 	"context"
-
-	"go-zhihu/application/user/internal/logic"
-	"go-zhihu/application/user/internal/svc"
-	"go-zhihu/application/user/service"
 )
 
 type UserServer struct {

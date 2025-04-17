@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
+	"code-hikari/user/api/internal/logic"
+	"code-hikari/user/api/internal/svc"
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"go-zhihu/application/applet/internal/logic"
-	"go-zhihu/application/applet/internal/svc"
 )
 
 func UserInfoHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

@@ -1,12 +1,11 @@
 package logic
 
 import (
+	"code-hikari/common-go"
+	"code-hikari/user/rpc/internal/svc"
+	"code-hikari/user/rpc/service"
 	"context"
 	"errors"
-	"go-zhihu/common"
-
-	"go-zhihu/application/user/internal/svc"
-	"go-zhihu/application/user/service"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

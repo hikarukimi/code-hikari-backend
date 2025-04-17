@@ -1,13 +1,12 @@
 package logic
 
 import (
+	"code-hikari/common-go"
+	"code-hikari/user/api/internal/svc"
+	"code-hikari/user/api/internal/types"
 	"context"
 	"fmt"
-	"go-zhihu/common"
 	"time"
-
-	"go-zhihu/application/applet/internal/svc"
-	"go-zhihu/application/applet/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

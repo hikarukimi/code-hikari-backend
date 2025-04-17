@@ -1,14 +1,13 @@
 package logic
 
 import (
+	"code-hikari/common-go"
+	"code-hikari/user/rpc/internal/svc"
+	"code-hikari/user/rpc/service"
 	"context"
 	"errors"
-	"go-zhihu/common"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
-
-	"go-zhihu/application/user/internal/svc"
-	"go-zhihu/application/user/service"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

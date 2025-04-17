@@ -5,9 +5,8 @@
 package user
 
 import (
+	"code-hikari/user/rpc/service"
 	"context"
-
-	"go-zhihu/application/user/service"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

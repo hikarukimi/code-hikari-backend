@@ -3,10 +3,10 @@ package handler
 import (
 	"net/http"
 
+	"code-hikari/user/api/internal/logic"
+	"code-hikari/user/api/internal/svc"
+	"code-hikari/user/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"go-zhihu/application/applet/internal/logic"
-	"go-zhihu/application/applet/internal/svc"
-	"go-zhihu/application/applet/internal/types"
 )
 
 func VerificationHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

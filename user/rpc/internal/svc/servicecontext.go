@@ -1,10 +1,11 @@
 package svc
 
 import (
+	"code-hikari/common-go"
+	"code-hikari/user/rpc/internal/config"
 	"fmt"
 	"github.com/redis/go-redis/v9"
-	"go-zhihu/application/user/internal/config"
-	"go-zhihu/common"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

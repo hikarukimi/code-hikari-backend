@@ -1,4 +1,4 @@
-module go-zhihu
+module code-hikari
 
 go 1.23.0
 

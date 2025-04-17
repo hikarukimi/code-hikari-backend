@@ -1,10 +1,9 @@
 package logic
 
 import (
+	"code-hikari/user/api/internal/svc"
+	"code-hikari/user/api/internal/types"
 	"context"
-
-	"go-zhihu/application/applet/internal/svc"
-	"go-zhihu/application/applet/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

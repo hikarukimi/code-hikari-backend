@@ -1,16 +1,16 @@
 package main
 
 import (
+	"code-hikari/common-go"
+	"code-hikari/user/api/internal/config"
+	"code-hikari/user/api/internal/handler"
+	"code-hikari/user/api/internal/svc"
 	"flag"
 	"fmt"
-	"github.com/zeromicro/go-zero/rest/httpx"
-	"go-zhihu/application/applet/internal/config"
-	"go-zhihu/application/applet/internal/handler"
-	"go-zhihu/application/applet/internal/svc"
-	"go-zhihu/common"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 var configFile = flag.String("f", "etc/applet-api.yaml", "the config file")

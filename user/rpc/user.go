@@ -1,13 +1,13 @@
 package main
 
 import (
+	"code-hikari/user/rpc/internal/config"
+	"code-hikari/user/rpc/internal/server"
+	"code-hikari/user/rpc/internal/svc"
 	"flag"
 	"fmt"
 
-	"go-zhihu/application/user/internal/config"
-	"go-zhihu/application/user/internal/server"
-	"go-zhihu/application/user/internal/svc"
-	userService "go-zhihu/application/user/service"
+	userService "code-hikari/user/rpc/service"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

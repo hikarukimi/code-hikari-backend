@@ -1,10 +1,9 @@
 package logic
 
 import (
+	"code-hikari/user/rpc/internal/svc"
+	"code-hikari/user/rpc/service"
 	"context"
-
-	"go-zhihu/application/user/internal/svc"
-	"go-zhihu/application/user/service"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

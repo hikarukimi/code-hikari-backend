@@ -1,12 +1,12 @@
 package handler
 
 import (
+	"code-hikari/user/api/internal/logic"
+	"code-hikari/user/api/internal/svc"
+	"code-hikari/user/api/internal/types"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"go-zhihu/application/applet/internal/logic"
-	"go-zhihu/application/applet/internal/svc"
-	"go-zhihu/application/applet/internal/types"
 )
 
 func UserInfoUpdateHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

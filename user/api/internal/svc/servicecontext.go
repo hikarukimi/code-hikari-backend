@@ -1,10 +1,10 @@
 package svc
 
 import (
+	"code-hikari/user/api/internal/config"
+	"code-hikari/user/rpc/user"
 	"github.com/redis/go-redis/v9"
 	"github.com/zeromicro/go-zero/zrpc"
-	"go-zhihu/application/applet/internal/config"
-	"go-zhihu/application/user/user"
 )
 
 type ServiceContext struct {
