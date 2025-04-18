@@ -2,7 +2,7 @@ package logic
 
 import (
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -22,8 +22,8 @@ func NewUserInfoUpdateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Us
 	}
 }
 
-func (l *UserInfoUpdateLogic) UserInfoUpdate(in *service.UserInfoUpdateRequest) (*service.LoginResponse, error) {
+func (l *UserInfoUpdateLogic) UserInfoUpdate(in *server.UserInfoUpdateRequest) (*server.UserInfoResponse, error) {
 	// todo: add your logic here and delete this line
 
-	return &service.LoginResponse{}, nil
+	return &server.UserInfoResponse{}, nil
 }

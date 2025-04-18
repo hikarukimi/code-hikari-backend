@@ -1,14 +1,9 @@
 Name: user.rpc
-ListenOn: 0.0.0.0:8080
+ListenOn: 0.0.0.0:5555
 
 TokenAuth:
   AccessSecret: "hikarukimi"
   AccessExpire: 3600
-
-Etcd:
-  Hosts:
-    - 127.0.0.1:2379
-  Key: user.rpc
 
 PostgresqlConfig:
   db_host: "127.0.0.1"
@@ -19,3 +14,13 @@ PostgresqlConfig:
 
 RedisConfig:
   Host: "127.0.0.1:6379"
+
+Consul:
+  Host: 127.0.0.1:8500 # consul endpoint
+  Token: 'f0512db6-76d6-f25e-f344-a98cc3484d42' # consul ACL token (optional)
+  Key: user.rpc # service name registered to Consul
+  Meta:
+    Protocol: grpc
+  Tag:
+    - tag
+    - rpc

@@ -1,7 +1,8 @@
 syntax = "proto3";
 
-package service;
-option go_package = "./service";
+package server;
+option go_package = "./server";
+
 
 // 定义服务 User
 service User {

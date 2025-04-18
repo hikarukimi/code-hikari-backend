@@ -20,8 +20,8 @@ type (
 		VerificationCode string `json:"verificationCode"`
 	}
 	UsernameLoginRequest {
-		Username string
-		Password string
+		Username string `json:"username"`
+		Password string `json:"password"`
 	}
 	LoginResponse {
 		UserId int64  `json:"userId"`

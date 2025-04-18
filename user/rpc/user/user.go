@@ -5,27 +5,28 @@
 package user
 
 import (
-	"code-hikari/user/rpc/service"
 	"context"
+
+	"code-hikari/user/rpc/server"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 )
 
 type (
-	FindByIdRequest       = service.FindByIdRequest
-	FindByIdResponse      = service.FindByIdResponse
-	FindByMobileRequest   = service.FindByMobileRequest
-	FindByMobileResponse  = service.FindByMobileResponse
-	LoginResponse         = service.LoginResponse
-	MobileLoginRequest    = service.MobileLoginRequest
-	RegisterRequest       = service.RegisterRequest
-	RegisterResponse      = service.RegisterResponse
-	SendSmsRequest        = service.SendSmsRequest
-	SendSmsResponse       = service.SendSmsResponse
-	UserInfoResponse      = service.UserInfoResponse
-	UserInfoUpdateRequest = service.UserInfoUpdateRequest
-	UsernameLoginRequest  = service.UsernameLoginRequest
+	FindByIdRequest       = server.FindByIdRequest
+	FindByIdResponse      = server.FindByIdResponse
+	FindByMobileRequest   = server.FindByMobileRequest
+	FindByMobileResponse  = server.FindByMobileResponse
+	LoginResponse         = server.LoginResponse
+	MobileLoginRequest    = server.MobileLoginRequest
+	RegisterRequest       = server.RegisterRequest
+	RegisterResponse      = server.RegisterResponse
+	SendSmsRequest        = server.SendSmsRequest
+	SendSmsResponse       = server.SendSmsResponse
+	UserInfoResponse      = server.UserInfoResponse
+	UserInfoUpdateRequest = server.UserInfoUpdateRequest
+	UsernameLoginRequest  = server.UsernameLoginRequest
 
 	User interface {
 		Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
@@ -34,7 +35,7 @@ type (
 		SendSms(ctx context.Context, in *SendSmsRequest, opts ...grpc.CallOption) (*SendSmsResponse, error)
 		MobileLogin(ctx context.Context, in *MobileLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 		UsernameLogin(ctx context.Context, in *UsernameLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-		UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+		UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*UserInfoResponse, error)
 	}
 
 	defaultUser struct {
@@ -49,36 +50,36 @@ func NewUser(cli zrpc.Client) User {
 }
 
 func (m *defaultUser) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+	client := server.NewUserClient(m.cli.Conn())
 	return client.Register(ctx, in, opts...)
 }
 
 func (m *defaultUser) FindById(ctx context.Context, in *FindByIdRequest, opts ...grpc.CallOption) (*FindByIdResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+	client := server.NewUserClient(m.cli.Conn())
 	return client.FindById(ctx, in, opts...)
 }
 
 func (m *defaultUser) FindByMobile(ctx context.Context, in *FindByMobileRequest, opts ...grpc.CallOption) (*FindByMobileResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+	client := server.NewUserClient(m.cli.Conn())
 	return client.FindByMobile(ctx, in, opts...)
 }
 
 func (m *defaultUser) SendSms(ctx context.Context, in *SendSmsRequest, opts ...grpc.CallOption) (*SendSmsResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+	client := server.NewUserClient(m.cli.Conn())
 	return client.SendSms(ctx, in, opts...)
 }
 
 func (m *defaultUser) MobileLogin(ctx context.Context, in *MobileLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+	client := server.NewUserClient(m.cli.Conn())
 	return client.MobileLogin(ctx, in, opts...)
 }
 
 func (m *defaultUser) UsernameLogin(ctx context.Context, in *UsernameLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+	client := server.NewUserClient(m.cli.Conn())
 	return client.UsernameLogin(ctx, in, opts...)
 }
 
-func (m *defaultUser) UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	client := service.NewUserClient(m.cli.Conn())
+func (m *defaultUser) UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*UserInfoResponse, error) {
+	client := server.NewUserClient(m.cli.Conn())
 	return client.UserInfoUpdate(ctx, in, opts...)
 }

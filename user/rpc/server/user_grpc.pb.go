@@ -4,7 +4,7 @@
 // - protoc             v6.30.2
 // source: user.proto
 
-package service
+package server
 
 import (
 	context "context"
@@ -19,13 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_Register_FullMethodName       = "/service.User/Register"
-	User_FindById_FullMethodName       = "/service.User/FindById"
-	User_FindByMobile_FullMethodName   = "/service.User/FindByMobile"
-	User_SendSms_FullMethodName        = "/service.User/SendSms"
-	User_MobileLogin_FullMethodName    = "/service.User/MobileLogin"
-	User_UsernameLogin_FullMethodName  = "/service.User/UsernameLogin"
-	User_UserInfoUpdate_FullMethodName = "/service.User/UserInfoUpdate"
+	User_Register_FullMethodName       = "/server.User/Register"
+	User_FindById_FullMethodName       = "/server.User/FindById"
+	User_FindByMobile_FullMethodName   = "/server.User/FindByMobile"
+	User_SendSms_FullMethodName        = "/server.User/SendSms"
+	User_MobileLogin_FullMethodName    = "/server.User/MobileLogin"
+	User_UsernameLogin_FullMethodName  = "/server.User/UsernameLogin"
+	User_UserInfoUpdate_FullMethodName = "/server.User/UserInfoUpdate"
 )
 
 // UserClient is the client API for User service.
@@ -40,7 +40,7 @@ type UserClient interface {
 	SendSms(ctx context.Context, in *SendSmsRequest, opts ...grpc.CallOption) (*SendSmsResponse, error)
 	MobileLogin(ctx context.Context, in *MobileLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	UsernameLogin(ctx context.Context, in *UsernameLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*UserInfoResponse, error)
 }
 
 type userClient struct {
@@ -111,9 +111,9 @@ func (c *userClient) UsernameLogin(ctx context.Context, in *UsernameLoginRequest
 	return out, nil
 }
 
-func (c *userClient) UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+func (c *userClient) UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*UserInfoResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(LoginResponse)
+	out := new(UserInfoResponse)
 	err := c.cc.Invoke(ctx, User_UserInfoUpdate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -133,7 +133,7 @@ type UserServer interface {
 	SendSms(context.Context, *SendSmsRequest) (*SendSmsResponse, error)
 	MobileLogin(context.Context, *MobileLoginRequest) (*LoginResponse, error)
 	UsernameLogin(context.Context, *UsernameLoginRequest) (*LoginResponse, error)
-	UserInfoUpdate(context.Context, *UserInfoUpdateRequest) (*LoginResponse, error)
+	UserInfoUpdate(context.Context, *UserInfoUpdateRequest) (*UserInfoResponse, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -162,7 +162,7 @@ func (UnimplementedUserServer) MobileLogin(context.Context, *MobileLoginRequest)
 func (UnimplementedUserServer) UsernameLogin(context.Context, *UsernameLoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UsernameLogin not implemented")
 }
-func (UnimplementedUserServer) UserInfoUpdate(context.Context, *UserInfoUpdateRequest) (*LoginResponse, error) {
+func (UnimplementedUserServer) UserInfoUpdate(context.Context, *UserInfoUpdateRequest) (*UserInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserInfoUpdate not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
@@ -316,7 +316,7 @@ func _User_UserInfoUpdate_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "service.User",
+	ServiceName: "server.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

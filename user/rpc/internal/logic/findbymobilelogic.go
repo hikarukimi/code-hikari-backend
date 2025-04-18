@@ -2,7 +2,7 @@ package logic
 
 import (
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -22,8 +22,8 @@ func NewFindByMobileLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Find
 	}
 }
 
-func (l *FindByMobileLogic) FindByMobile(in *service.FindByMobileRequest) (*service.FindByMobileResponse, error) {
+func (l *FindByMobileLogic) FindByMobile(in *server.FindByMobileRequest) (*server.FindByMobileResponse, error) {
 	// todo: add your logic here and delete this line
 
-	return &service.FindByMobileResponse{}, nil
+	return &server.FindByMobileResponse{}, nil
 }

@@ -4,7 +4,7 @@
 // 	protoc        v6.30.2
 // source: user.proto
 
-package service
+package server
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -714,7 +714,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\aservice\"\xb5\x01\n" +
+	"user.proto\x12\x06server\"\xb5\x01\n" +
 	"\x0fRegisterRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x16\n" +
 	"\x06mobile\x18\x02 \x01(\tR\x06mobile\x12\x1b\n" +
@@ -726,13 +726,13 @@ const file_user_proto_rawDesc = "" +
 	"\x06userId\x18\x02 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05token\x18\x03 \x01(\tR\x05token\")\n" +
 	"\x0fFindByIdRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\x03R\x06userId\"I\n" +
-	"\x10FindByIdResponse\x125\n" +
-	"\buserInfo\x18\x01 \x01(\v2\x19.service.UserInfoResponseR\buserInfo\"-\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\"H\n" +
+	"\x10FindByIdResponse\x124\n" +
+	"\buserInfo\x18\x01 \x01(\v2\x18.server.UserInfoResponseR\buserInfo\"-\n" +
 	"\x13FindByMobileRequest\x12\x16\n" +
-	"\x06mobile\x18\x01 \x01(\tR\x06mobile\"M\n" +
-	"\x14FindByMobileResponse\x125\n" +
-	"\buserInfo\x18\x01 \x01(\v2\x19.service.UserInfoResponseR\buserInfo\"B\n" +
+	"\x06mobile\x18\x01 \x01(\tR\x06mobile\"L\n" +
+	"\x14FindByMobileResponse\x124\n" +
+	"\buserInfo\x18\x01 \x01(\v2\x18.server.UserInfoResponseR\buserInfo\"B\n" +
 	"\x0eSendSmsRequest\x12\x16\n" +
 	"\x06mobile\x18\x01 \x01(\tR\x06mobile\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\"\x11\n" +
@@ -755,15 +755,16 @@ const file_user_proto_rawDesc = "" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x16\n" +
 	"\x06mobile\x18\x02 \x01(\tR\x06mobile\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x16\n" +
-	"\x06avatar\x18\x04 \x01(\tR\x06avatar2\xe9\x03\n" +
-	"\x04User\x12?\n" +
-	"\bRegister\x12\x18.service.RegisterRequest\x1a\x19.service.RegisterResponse\x12?\n" +
-	"\bFindById\x12\x18.service.FindByIdRequest\x1a\x19.service.FindByIdResponse\x12K\n" +
-	"\fFindByMobile\x12\x1c.service.FindByMobileRequest\x1a\x1d.service.FindByMobileResponse\x12<\n" +
-	"\aSendSms\x12\x17.service.SendSmsRequest\x1a\x18.service.SendSmsResponse\x12B\n" +
-	"\vMobileLogin\x12\x1b.service.MobileLoginRequest\x1a\x16.service.LoginResponse\x12F\n" +
-	"\rUsernameLogin\x12\x1d.service.UsernameLoginRequest\x1a\x16.service.LoginResponse\x12H\n" +
-	"\x0eUserInfoUpdate\x12\x1e.service.UserInfoUpdateRequest\x1a\x16.service.LoginResponseB\vZ\t./serviceb\x06proto3"
+	"\x06avatar\x18\x04 \x01(\tR\x06avatar2\xde\x03\n" +
+	"\x04User\x12=\n" +
+	"\bRegister\x12\x17.server.RegisterRequest\x1a\x18.server.RegisterResponse\x12=\n" +
+	"\bFindById\x12\x17.server.FindByIdRequest\x1a\x18.server.FindByIdResponse\x12I\n" +
+	"\fFindByMobile\x12\x1b.server.FindByMobileRequest\x1a\x1c.server.FindByMobileResponse\x12:\n" +
+	"\aSendSms\x12\x16.server.SendSmsRequest\x1a\x17.server.SendSmsResponse\x12@\n" +
+	"\vMobileLogin\x12\x1a.server.MobileLoginRequest\x1a\x15.server.LoginResponse\x12D\n" +
+	"\rUsernameLogin\x12\x1c.server.UsernameLoginRequest\x1a\x15.server.LoginResponse\x12I\n" +
+	"\x0eUserInfoUpdate\x12\x1d.server.UserInfoUpdateRequest\x1a\x18.server.UserInfoResponseB\n" +
+	"Z\b./serverb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -779,37 +780,37 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_user_proto_goTypes = []any{
-	(*RegisterRequest)(nil),       // 0: service.RegisterRequest
-	(*RegisterResponse)(nil),      // 1: service.RegisterResponse
-	(*FindByIdRequest)(nil),       // 2: service.FindByIdRequest
-	(*FindByIdResponse)(nil),      // 3: service.FindByIdResponse
-	(*FindByMobileRequest)(nil),   // 4: service.FindByMobileRequest
-	(*FindByMobileResponse)(nil),  // 5: service.FindByMobileResponse
-	(*SendSmsRequest)(nil),        // 6: service.SendSmsRequest
-	(*SendSmsResponse)(nil),       // 7: service.SendSmsResponse
-	(*MobileLoginRequest)(nil),    // 8: service.MobileLoginRequest
-	(*UsernameLoginRequest)(nil),  // 9: service.UsernameLoginRequest
-	(*LoginResponse)(nil),         // 10: service.LoginResponse
-	(*UserInfoResponse)(nil),      // 11: service.UserInfoResponse
-	(*UserInfoUpdateRequest)(nil), // 12: service.UserInfoUpdateRequest
+	(*RegisterRequest)(nil),       // 0: server.RegisterRequest
+	(*RegisterResponse)(nil),      // 1: server.RegisterResponse
+	(*FindByIdRequest)(nil),       // 2: server.FindByIdRequest
+	(*FindByIdResponse)(nil),      // 3: server.FindByIdResponse
+	(*FindByMobileRequest)(nil),   // 4: server.FindByMobileRequest
+	(*FindByMobileResponse)(nil),  // 5: server.FindByMobileResponse
+	(*SendSmsRequest)(nil),        // 6: server.SendSmsRequest
+	(*SendSmsResponse)(nil),       // 7: server.SendSmsResponse
+	(*MobileLoginRequest)(nil),    // 8: server.MobileLoginRequest
+	(*UsernameLoginRequest)(nil),  // 9: server.UsernameLoginRequest
+	(*LoginResponse)(nil),         // 10: server.LoginResponse
+	(*UserInfoResponse)(nil),      // 11: server.UserInfoResponse
+	(*UserInfoUpdateRequest)(nil), // 12: server.UserInfoUpdateRequest
 }
 var file_user_proto_depIdxs = []int32{
-	11, // 0: service.FindByIdResponse.userInfo:type_name -> service.UserInfoResponse
-	11, // 1: service.FindByMobileResponse.userInfo:type_name -> service.UserInfoResponse
-	0,  // 2: service.User.Register:input_type -> service.RegisterRequest
-	2,  // 3: service.User.FindById:input_type -> service.FindByIdRequest
-	4,  // 4: service.User.FindByMobile:input_type -> service.FindByMobileRequest
-	6,  // 5: service.User.SendSms:input_type -> service.SendSmsRequest
-	8,  // 6: service.User.MobileLogin:input_type -> service.MobileLoginRequest
-	9,  // 7: service.User.UsernameLogin:input_type -> service.UsernameLoginRequest
-	12, // 8: service.User.UserInfoUpdate:input_type -> service.UserInfoUpdateRequest
-	1,  // 9: service.User.Register:output_type -> service.RegisterResponse
-	3,  // 10: service.User.FindById:output_type -> service.FindByIdResponse
-	5,  // 11: service.User.FindByMobile:output_type -> service.FindByMobileResponse
-	7,  // 12: service.User.SendSms:output_type -> service.SendSmsResponse
-	10, // 13: service.User.MobileLogin:output_type -> service.LoginResponse
-	10, // 14: service.User.UsernameLogin:output_type -> service.LoginResponse
-	10, // 15: service.User.UserInfoUpdate:output_type -> service.LoginResponse
+	11, // 0: server.FindByIdResponse.userInfo:type_name -> server.UserInfoResponse
+	11, // 1: server.FindByMobileResponse.userInfo:type_name -> server.UserInfoResponse
+	0,  // 2: server.User.Register:input_type -> server.RegisterRequest
+	2,  // 3: server.User.FindById:input_type -> server.FindByIdRequest
+	4,  // 4: server.User.FindByMobile:input_type -> server.FindByMobileRequest
+	6,  // 5: server.User.SendSms:input_type -> server.SendSmsRequest
+	8,  // 6: server.User.MobileLogin:input_type -> server.MobileLoginRequest
+	9,  // 7: server.User.UsernameLogin:input_type -> server.UsernameLoginRequest
+	12, // 8: server.User.UserInfoUpdate:input_type -> server.UserInfoUpdateRequest
+	1,  // 9: server.User.Register:output_type -> server.RegisterResponse
+	3,  // 10: server.User.FindById:output_type -> server.FindByIdResponse
+	5,  // 11: server.User.FindByMobile:output_type -> server.FindByMobileResponse
+	7,  // 12: server.User.SendSms:output_type -> server.SendSmsResponse
+	10, // 13: server.User.MobileLogin:output_type -> server.LoginResponse
+	10, // 14: server.User.UsernameLogin:output_type -> server.LoginResponse
+	11, // 15: server.User.UserInfoUpdate:output_type -> server.UserInfoResponse
 	9,  // [9:16] is the sub-list for method output_type
 	2,  // [2:9] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name

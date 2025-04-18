@@ -3,7 +3,7 @@ package logic
 import (
 	"code-hikari/common-go"
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 	"errors"
 
@@ -24,7 +24,7 @@ func NewMobileLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Mobil
 	}
 }
 
-func (l *MobileLoginLogic) MobileLogin(in *service.MobileLoginRequest) (*service.LoginResponse, error) {
+func (l *MobileLoginLogic) MobileLogin(in *server.MobileLoginRequest) (*server.LoginResponse, error) {
 	db := l.svcCtx.DB
 	var loginUser common.User
 	var notExistErr error
@@ -37,7 +37,7 @@ func (l *MobileLoginLogic) MobileLogin(in *service.MobileLoginRequest) (*service
 	if err != nil {
 		return nil, errors.New("token生成错误")
 	}
-	return &service.LoginResponse{
+	return &server.LoginResponse{
 		Token:  token,
 		UserId: int64(loginUser.ID),
 	}, nil

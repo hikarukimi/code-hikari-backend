@@ -4,10 +4,11 @@ import (
 	"code-hikari/user/rpc/internal/config"
 	"code-hikari/user/rpc/internal/server"
 	"code-hikari/user/rpc/internal/svc"
+	userService "code-hikari/user/rpc/server"
 	"flag"
 	"fmt"
-
-	userService "code-hikari/user/rpc/service"
+	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
+	_ "github.com/zeromicro/zero-contrib/zrpc/registry/nacos"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -32,10 +33,18 @@ func main() {
 			reflection.Register(grpcServer)
 		}
 	})
+	//api文件生成的默认代码
 	defer s.Stop()
 
 	s.AddUnaryInterceptors()
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
+
+	// register service to consul
+	err := consul.RegisterService(c.ListenOn, c.Consul)
+	if err != nil {
+		panic("向consul注册失败:" + err.Error())
+	}
 	s.Start()
+
 }

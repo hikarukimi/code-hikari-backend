@@ -3,7 +3,7 @@ package logic
 import (
 	"code-hikari/common-go"
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 	"errors"
 	"golang.org/x/crypto/bcrypt"
@@ -26,7 +26,7 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 	}
 }
 
-func (l *RegisterLogic) Register(in *service.RegisterRequest) (*service.RegisterResponse, error) {
+func (l *RegisterLogic) Register(in *server.RegisterRequest) (*server.RegisterResponse, error) {
 
 	if l.svcCtx.Redis.Get(l.ctx, common.VerificationKeyPrefix+in.Mobile).Val() != in.VerificationCode {
 		return nil, errors.New("验证码错误")
@@ -65,7 +65,7 @@ func (l *RegisterLogic) Register(in *service.RegisterRequest) (*service.Register
 	}
 
 	// 5. 返回注册成功响应
-	return &service.RegisterResponse{
+	return &server.RegisterResponse{
 		UserId: int64(newUser.ID),
 		Token:  token,
 	}, nil

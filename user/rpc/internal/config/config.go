@@ -3,6 +3,7 @@ package config
 import (
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/zrpc"
+	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
 )
 
 // Config 定义主配置结构体
@@ -11,6 +12,7 @@ type Config struct {
 	PostgresqlConfig   PostgresqlConfig
 	TokenAuth          AuthConfig // 认证配置
 	RedisConfig        redis.RedisConf
+	Consul             consul.Conf
 }
 
 // AuthConfig 定义认证相关的配置

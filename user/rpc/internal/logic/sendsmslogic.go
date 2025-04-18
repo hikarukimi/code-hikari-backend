@@ -2,7 +2,7 @@ package logic
 
 import (
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -22,8 +22,8 @@ func NewSendSmsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendSmsLo
 	}
 }
 
-func (l *SendSmsLogic) SendSms(in *service.SendSmsRequest) (*service.SendSmsResponse, error) {
+func (l *SendSmsLogic) SendSms(in *server.SendSmsRequest) (*server.SendSmsResponse, error) {
 	// todo: add your logic here and delete this line
 
-	return &service.SendSmsResponse{}, nil
+	return &server.SendSmsResponse{}, nil
 }

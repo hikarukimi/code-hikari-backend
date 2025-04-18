@@ -6,8 +6,15 @@ Auth:
   AccessExpire: 3600
 Redis:
   Host: "127.0.0.1:6379"
+
 UserRpc:
-  Etcd:
-    Hosts:
-      - 127.0.0.1:2379
-    Key: user.rpc
+  Target: consul://127.0.0.1:8500/user.rpc?wait=14s
+
+Consul:
+  Host: 127.0.0.1:8500 # consul endpoint
+  Key: user.api # service name registered to Consul
+  Meta:
+    Protocol: http
+  Tag:
+    - tag
+    - api

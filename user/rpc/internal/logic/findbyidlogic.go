@@ -2,7 +2,7 @@ package logic
 
 import (
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -22,8 +22,8 @@ func NewFindByIdLogic(ctx context.Context, svcCtx *svc.ServiceContext) *FindById
 	}
 }
 
-func (l *FindByIdLogic) FindById(in *service.FindByIdRequest) (*service.FindByIdResponse, error) {
+func (l *FindByIdLogic) FindById(in *server.FindByIdRequest) (*server.FindByIdResponse, error) {
 	// todo: add your logic here and delete this line
 
-	return &service.FindByIdResponse{}, nil
+	return &server.FindByIdResponse{}, nil
 }

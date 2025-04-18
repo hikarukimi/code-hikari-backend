@@ -3,9 +3,10 @@ package logic
 import (
 	"code-hikari/common-go"
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,12 +25,12 @@ func NewUsernameLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Use
 	}
 }
 
-func (l *UsernameLoginLogic) UsernameLogin(in *service.UsernameLoginRequest) (*service.LoginResponse, error) {
+func (l *UsernameLoginLogic) UsernameLogin(in *server.UsernameLoginRequest) (*server.LoginResponse, error) {
 	db := l.svcCtx.DB
 	var loginUser common.User
 	var notExistErr error
-	notExistErr = db.First(&loginUser).Where("username=?", in.Username).Error
-
+	notExistErr = db.Where("username=?", in.Username).First(&loginUser).Error
+	fmt.Println(loginUser)
 	if notExistErr != nil {
 		return nil, errors.New("不存在该用户")
 	}
@@ -37,7 +38,7 @@ func (l *UsernameLoginLogic) UsernameLogin(in *service.UsernameLoginRequest) (*s
 	if err != nil {
 		return nil, errors.New("token生成错误")
 	}
-	return &service.LoginResponse{
+	return &server.LoginResponse{
 		Token:  token,
 		UserId: int64(loginUser.ID),
 	}, nil

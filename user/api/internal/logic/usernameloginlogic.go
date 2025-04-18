@@ -3,7 +3,7 @@ package logic
 import (
 	"code-hikari/user/api/internal/svc"
 	"code-hikari/user/api/internal/types"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 	"context"
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -23,7 +23,8 @@ func NewUsernameLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Use
 }
 
 func (l *UsernameLoginLogic) UsernameLogin(req *types.UsernameLoginRequest) (resp *types.LoginResponse, err error) {
-	res, err := l.svcCtx.UserRpc.UsernameLogin(l.ctx, &service.UsernameLoginRequest{
+
+	res, err := l.svcCtx.UserRpc.UsernameLogin(l.ctx, &server.UsernameLoginRequest{
 		Username: req.Username,
 		Password: req.Password,
 	})

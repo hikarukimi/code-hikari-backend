@@ -5,15 +5,16 @@
 package server
 
 import (
+	"context"
+
 	"code-hikari/user/rpc/internal/logic"
 	"code-hikari/user/rpc/internal/svc"
-	"code-hikari/user/rpc/service"
-	"context"
+	"code-hikari/user/rpc/server"
 )
 
 type UserServer struct {
 	svcCtx *svc.ServiceContext
-	service.UnimplementedUserServer
+	server.UnimplementedUserServer
 }
 
 func NewUserServer(svcCtx *svc.ServiceContext) *UserServer {
@@ -22,37 +23,37 @@ func NewUserServer(svcCtx *svc.ServiceContext) *UserServer {
 	}
 }
 
-func (s *UserServer) Register(ctx context.Context, in *service.RegisterRequest) (*service.RegisterResponse, error) {
+func (s *UserServer) Register(ctx context.Context, in *server.RegisterRequest) (*server.RegisterResponse, error) {
 	l := logic.NewRegisterLogic(ctx, s.svcCtx)
 	return l.Register(in)
 }
 
-func (s *UserServer) FindById(ctx context.Context, in *service.FindByIdRequest) (*service.FindByIdResponse, error) {
+func (s *UserServer) FindById(ctx context.Context, in *server.FindByIdRequest) (*server.FindByIdResponse, error) {
 	l := logic.NewFindByIdLogic(ctx, s.svcCtx)
 	return l.FindById(in)
 }
 
-func (s *UserServer) FindByMobile(ctx context.Context, in *service.FindByMobileRequest) (*service.FindByMobileResponse, error) {
+func (s *UserServer) FindByMobile(ctx context.Context, in *server.FindByMobileRequest) (*server.FindByMobileResponse, error) {
 	l := logic.NewFindByMobileLogic(ctx, s.svcCtx)
 	return l.FindByMobile(in)
 }
 
-func (s *UserServer) SendSms(ctx context.Context, in *service.SendSmsRequest) (*service.SendSmsResponse, error) {
+func (s *UserServer) SendSms(ctx context.Context, in *server.SendSmsRequest) (*server.SendSmsResponse, error) {
 	l := logic.NewSendSmsLogic(ctx, s.svcCtx)
 	return l.SendSms(in)
 }
 
-func (s *UserServer) MobileLogin(ctx context.Context, in *service.MobileLoginRequest) (*service.LoginResponse, error) {
+func (s *UserServer) MobileLogin(ctx context.Context, in *server.MobileLoginRequest) (*server.LoginResponse, error) {
 	l := logic.NewMobileLoginLogic(ctx, s.svcCtx)
 	return l.MobileLogin(in)
 }
 
-func (s *UserServer) UsernameLogin(ctx context.Context, in *service.UsernameLoginRequest) (*service.LoginResponse, error) {
+func (s *UserServer) UsernameLogin(ctx context.Context, in *server.UsernameLoginRequest) (*server.LoginResponse, error) {
 	l := logic.NewUsernameLoginLogic(ctx, s.svcCtx)
 	return l.UsernameLogin(in)
 }
 
-func (s *UserServer) UserInfoUpdate(ctx context.Context, in *service.UserInfoUpdateRequest) (*service.LoginResponse, error) {
+func (s *UserServer) UserInfoUpdate(ctx context.Context, in *server.UserInfoUpdateRequest) (*server.UserInfoResponse, error) {
 	l := logic.NewUserInfoUpdateLogic(ctx, s.svcCtx)
 	return l.UserInfoUpdate(in)
 }

@@ -39,8 +39,8 @@ type UserInfoUpdateRequest struct {
 }
 
 type UsernameLoginRequest struct {
-	Username string
-	Password string
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
 type VerificationRequest struct {

@@ -5,7 +5,7 @@ import (
 
 	"code-hikari/user/api/internal/svc"
 	"code-hikari/user/api/internal/types"
-	"code-hikari/user/rpc/service"
+	"code-hikari/user/rpc/server"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -25,7 +25,7 @@ func NewMobileLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Mobil
 }
 
 func (l *MobileLoginLogic) MobileLogin(req *types.MobileLoginRequest) (resp *types.LoginResponse, err error) {
-	res, err := l.svcCtx.UserRpc.MobileLogin(l.ctx, &service.MobileLoginRequest{
+	res, err := l.svcCtx.UserRpc.MobileLogin(l.ctx, &server.MobileLoginRequest{
 		Mobile:       req.Mobile,
 		Verification: req.VerificationCode,
 	})
