@@ -1,7 +1,7 @@
 package logic
 
 import (
-	"code-hikari/common-go"
+	"code-hikari/common-go/model"
 	"code-hikari/user/rpc/internal/svc"
 	"code-hikari/user/rpc/server"
 	"context"
@@ -26,7 +26,7 @@ func NewMobileLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Mobil
 
 func (l *MobileLoginLogic) MobileLogin(in *server.MobileLoginRequest) (*server.LoginResponse, error) {
 	db := l.svcCtx.DB
-	var loginUser common.User
+	var loginUser model.User
 	var notExistErr error
 
 	notExistErr = db.First(&loginUser).Where("mobile=?", in.Mobile).Error

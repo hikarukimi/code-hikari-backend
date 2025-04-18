@@ -2,6 +2,7 @@ package logic
 
 import (
 	"code-hikari/common-go"
+	"code-hikari/common-go/model"
 	"code-hikari/user/rpc/internal/svc"
 	"code-hikari/user/rpc/server"
 	"context"
@@ -33,7 +34,7 @@ func (l *RegisterLogic) Register(in *server.RegisterRequest) (*server.RegisterRe
 	}
 
 	// 2. 检查用户是否已存在
-	var existingUser common.User
+	var existingUser model.User
 	err := l.svcCtx.DB.Where("mobile = ? or username=?", in.Mobile, in.Username).First(&existingUser).Error
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		return nil, errors.New("数据库查询失败")
@@ -49,7 +50,7 @@ func (l *RegisterLogic) Register(in *server.RegisterRequest) (*server.RegisterRe
 	}
 
 	// 4. 创建新用户
-	newUser := common.User{
+	newUser := model.User{
 		Username: in.Username,
 		Mobile:   in.Mobile,
 		Avatar:   *in.Avatar,

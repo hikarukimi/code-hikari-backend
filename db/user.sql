@@ -24,7 +24,7 @@ CREATE TABLE users (
     -- 用户的等级
     level INTEGER,
     -- 用户最后一次登录的时间，包含时区信息
-    last_signin_at TIMESTAMP WITH TIME ZONE,
+    last_sign_in_at TIMESTAMP WITH TIME ZONE,
     -- 用户记录创建的时间，包含时区信息，不能为空
     created_at TIMESTAMP WITH TIME ZONE NOT NULL,
     -- 用户记录更新的时间，包含时区信息，不能为空
@@ -59,21 +59,21 @@ CREATE TABLE user_relations (
 );
 
 -- 用户签到记录表（添加时间索引），用于记录用户的签到信息
-CREATE TABLE user_signins (
+CREATE TABLE user_sign_ins (
     -- 签到记录的唯一标识，使用自增序列生成
     id BIGSERIAL PRIMARY KEY,
     -- 签到用户的ID
     user_id BIGINT NOT NULL,
     -- 用户签到的日期
-    signin_date DATE NOT NULL,
+    sign_in_date DATE NOT NULL,
     -- 签到记录创建的时间，包含时区信息，不能为空
     created_at TIMESTAMP WITH TIME ZONE NOT NULL,
     -- 签到记录更新的时间，包含时区信息，不能为空
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL,
     -- 签到记录删除的时间，包含时区信息，用于软删除
     deleted_at TIMESTAMP WITH TIME ZONE,
-    -- 确保 user_id 和 signin_date 的组合唯一
-    UNIQUE(user_id, signin_date)
+    -- 确保 user_id 和 sign_in_date 的组合唯一
+    UNIQUE(user_id, sign_in_date)
 );
 
 -- 用户收藏表（添加类型索引），用于存储用户的收藏信息

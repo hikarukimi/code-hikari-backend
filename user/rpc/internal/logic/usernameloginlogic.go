@@ -1,7 +1,7 @@
 package logic
 
 import (
-	"code-hikari/common-go"
+	"code-hikari/common-go/model"
 	"code-hikari/user/rpc/internal/svc"
 	"code-hikari/user/rpc/server"
 	"context"
@@ -27,7 +27,7 @@ func NewUsernameLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Use
 
 func (l *UsernameLoginLogic) UsernameLogin(in *server.UsernameLoginRequest) (*server.LoginResponse, error) {
 	db := l.svcCtx.DB
-	var loginUser common.User
+	var loginUser model.User
 	var notExistErr error
 	notExistErr = db.Where("username=?", in.Username).First(&loginUser).Error
 	fmt.Println(loginUser)

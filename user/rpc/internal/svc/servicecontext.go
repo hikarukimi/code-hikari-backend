@@ -2,10 +2,10 @@ package svc
 
 import (
 	"code-hikari/common-go"
+	model "code-hikari/common-go/model"
 	"code-hikari/user/rpc/internal/config"
 	"fmt"
 	"github.com/redis/go-redis/v9"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -49,9 +49,28 @@ func initPostgres(c config.Config) *gorm.DB {
 		panic(err.Error())
 	}
 
-	fmt.Println("Successfully connected to the Postgresql!")
+	// 自动迁移模型
+	err = db.AutoMigrate(&model.User{})
+	if err != nil {
+		panic(err.Error())
+	}
+	err = db.AutoMigrate(&model.UserRelation{})
+	if err != nil {
+		panic(err.Error())
+	}
+	err = db.AutoMigrate(&model.UserSignIn{})
+	if err != nil {
+		panic(err.Error())
+	}
+	err = db.AutoMigrate(&model.UserFavorite{})
+	if err != nil {
+		panic(err.Error())
+	}
+
+	fmt.Println("Successfully connected to the Postgresql And Successfully auto migrate models!")
 	return db
 }
+
 func initRedis(c config.Config) *redis.Client {
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     c.Redis.Host,
@@ -61,6 +80,7 @@ func initRedis(c config.Config) *redis.Client {
 	fmt.Println("Successfully connected to the Redis!")
 	return rdb
 }
+
 func initTokenUtil(c config.Config) *common.UserClaims {
 	return common.NewTokenUtil(c.TokenAuth.AccessSecret, c.TokenAuth.AccessExpire)
 }

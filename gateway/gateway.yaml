@@ -1,0 +1,22 @@
+Name: gateway
+Host: 127.0.0.1
+Port: 9000
+Upstreams:
+  - Name: user-service
+    Http:
+      Target: localhost:8888
+      Timeout: 3000    # 单位为毫秒，默认值 3000
+    Mappings:
+      # 对应 prefix: v1 的服务
+      - Method: POST
+        Path: /v1/register
+      - Method: POST
+        Path: /v1/user/update
+      - Method: POST
+        Path: /v1/user/info
+      - Method: POST
+        Path: /v1/verification
+      - Method: POST
+        Path: /v1/usernameLogin
+      - Method: POST
+        Path: /v1/mobileLogin
