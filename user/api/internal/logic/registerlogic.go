@@ -1,6 +1,7 @@
 package logic
 
 import (
+	"code-hikari/common-go"
 	"code-hikari/user/api/internal/svc"
 	"code-hikari/user/api/internal/types"
 	"code-hikari/user/rpc/server"
@@ -24,7 +25,6 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(req *types.RegisterRequest) (resp *types.RegisterResponse, err error) {
-	// todo: add your logic here and delete this line
 	result, err := l.svcCtx.UserRpc.Register(l.ctx, &server.RegisterRequest{
 		Username:         req.Username,
 		Mobile:           req.Mobile,
@@ -34,6 +34,8 @@ func (l *RegisterLogic) Register(req *types.RegisterRequest) (resp *types.Regist
 	if err != nil {
 		return nil, errors.New("用户创建失败" + err.Error())
 	}
+	// 将用户名添加到布隆过滤器中
+	l.svcCtx.RedisClient.BFAdd(l.ctx, common.UsernameFilter, req.Username)
 	return &types.RegisterResponse{
 		UserId: result.UserId,
 		Token:  result.Token,

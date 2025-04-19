@@ -709,6 +709,94 @@ func (x *UserInfoUpdateRequest) GetAvatar() string {
 	return ""
 }
 
+type IsUsernameExistRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsUsernameExistRequest) Reset() {
+	*x = IsUsernameExistRequest{}
+	mi := &file_user_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsUsernameExistRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsUsernameExistRequest) ProtoMessage() {}
+
+func (x *IsUsernameExistRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsUsernameExistRequest.ProtoReflect.Descriptor instead.
+func (*IsUsernameExistRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *IsUsernameExistRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+type IsUsernameExistResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Exist         bool                   `protobuf:"varint,1,opt,name=Exist,proto3" json:"Exist,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsUsernameExistResponse) Reset() {
+	*x = IsUsernameExistResponse{}
+	mi := &file_user_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsUsernameExistResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsUsernameExistResponse) ProtoMessage() {}
+
+func (x *IsUsernameExistResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsUsernameExistResponse.ProtoReflect.Descriptor instead.
+func (*IsUsernameExistResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *IsUsernameExistResponse) GetExist() bool {
+	if x != nil {
+		return x.Exist
+	}
+	return false
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -755,7 +843,11 @@ const file_user_proto_rawDesc = "" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x16\n" +
 	"\x06mobile\x18\x02 \x01(\tR\x06mobile\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x16\n" +
-	"\x06avatar\x18\x04 \x01(\tR\x06avatar2\xde\x03\n" +
+	"\x06avatar\x18\x04 \x01(\tR\x06avatar\"4\n" +
+	"\x16IsUsernameExistRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"/\n" +
+	"\x17IsUsernameExistResponse\x12\x14\n" +
+	"\x05Exist\x18\x01 \x01(\bR\x05Exist2\xb2\x04\n" +
 	"\x04User\x12=\n" +
 	"\bRegister\x12\x17.server.RegisterRequest\x1a\x18.server.RegisterResponse\x12=\n" +
 	"\bFindById\x12\x17.server.FindByIdRequest\x1a\x18.server.FindByIdResponse\x12I\n" +
@@ -763,7 +855,8 @@ const file_user_proto_rawDesc = "" +
 	"\aSendSms\x12\x16.server.SendSmsRequest\x1a\x17.server.SendSmsResponse\x12@\n" +
 	"\vMobileLogin\x12\x1a.server.MobileLoginRequest\x1a\x15.server.LoginResponse\x12D\n" +
 	"\rUsernameLogin\x12\x1c.server.UsernameLoginRequest\x1a\x15.server.LoginResponse\x12I\n" +
-	"\x0eUserInfoUpdate\x12\x1d.server.UserInfoUpdateRequest\x1a\x18.server.UserInfoResponseB\n" +
+	"\x0eUserInfoUpdate\x12\x1d.server.UserInfoUpdateRequest\x1a\x18.server.UserInfoResponse\x12R\n" +
+	"\x0fIsUsernameExist\x12\x1e.server.IsUsernameExistRequest\x1a\x1f.server.IsUsernameExistResponseB\n" +
 	"Z\b./serverb\x06proto3"
 
 var (
@@ -778,21 +871,23 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_user_proto_goTypes = []any{
-	(*RegisterRequest)(nil),       // 0: server.RegisterRequest
-	(*RegisterResponse)(nil),      // 1: server.RegisterResponse
-	(*FindByIdRequest)(nil),       // 2: server.FindByIdRequest
-	(*FindByIdResponse)(nil),      // 3: server.FindByIdResponse
-	(*FindByMobileRequest)(nil),   // 4: server.FindByMobileRequest
-	(*FindByMobileResponse)(nil),  // 5: server.FindByMobileResponse
-	(*SendSmsRequest)(nil),        // 6: server.SendSmsRequest
-	(*SendSmsResponse)(nil),       // 7: server.SendSmsResponse
-	(*MobileLoginRequest)(nil),    // 8: server.MobileLoginRequest
-	(*UsernameLoginRequest)(nil),  // 9: server.UsernameLoginRequest
-	(*LoginResponse)(nil),         // 10: server.LoginResponse
-	(*UserInfoResponse)(nil),      // 11: server.UserInfoResponse
-	(*UserInfoUpdateRequest)(nil), // 12: server.UserInfoUpdateRequest
+	(*RegisterRequest)(nil),         // 0: server.RegisterRequest
+	(*RegisterResponse)(nil),        // 1: server.RegisterResponse
+	(*FindByIdRequest)(nil),         // 2: server.FindByIdRequest
+	(*FindByIdResponse)(nil),        // 3: server.FindByIdResponse
+	(*FindByMobileRequest)(nil),     // 4: server.FindByMobileRequest
+	(*FindByMobileResponse)(nil),    // 5: server.FindByMobileResponse
+	(*SendSmsRequest)(nil),          // 6: server.SendSmsRequest
+	(*SendSmsResponse)(nil),         // 7: server.SendSmsResponse
+	(*MobileLoginRequest)(nil),      // 8: server.MobileLoginRequest
+	(*UsernameLoginRequest)(nil),    // 9: server.UsernameLoginRequest
+	(*LoginResponse)(nil),           // 10: server.LoginResponse
+	(*UserInfoResponse)(nil),        // 11: server.UserInfoResponse
+	(*UserInfoUpdateRequest)(nil),   // 12: server.UserInfoUpdateRequest
+	(*IsUsernameExistRequest)(nil),  // 13: server.IsUsernameExistRequest
+	(*IsUsernameExistResponse)(nil), // 14: server.IsUsernameExistResponse
 }
 var file_user_proto_depIdxs = []int32{
 	11, // 0: server.FindByIdResponse.userInfo:type_name -> server.UserInfoResponse
@@ -804,15 +899,17 @@ var file_user_proto_depIdxs = []int32{
 	8,  // 6: server.User.MobileLogin:input_type -> server.MobileLoginRequest
 	9,  // 7: server.User.UsernameLogin:input_type -> server.UsernameLoginRequest
 	12, // 8: server.User.UserInfoUpdate:input_type -> server.UserInfoUpdateRequest
-	1,  // 9: server.User.Register:output_type -> server.RegisterResponse
-	3,  // 10: server.User.FindById:output_type -> server.FindByIdResponse
-	5,  // 11: server.User.FindByMobile:output_type -> server.FindByMobileResponse
-	7,  // 12: server.User.SendSms:output_type -> server.SendSmsResponse
-	10, // 13: server.User.MobileLogin:output_type -> server.LoginResponse
-	10, // 14: server.User.UsernameLogin:output_type -> server.LoginResponse
-	11, // 15: server.User.UserInfoUpdate:output_type -> server.UserInfoResponse
-	9,  // [9:16] is the sub-list for method output_type
-	2,  // [2:9] is the sub-list for method input_type
+	13, // 9: server.User.IsUsernameExist:input_type -> server.IsUsernameExistRequest
+	1,  // 10: server.User.Register:output_type -> server.RegisterResponse
+	3,  // 11: server.User.FindById:output_type -> server.FindByIdResponse
+	5,  // 12: server.User.FindByMobile:output_type -> server.FindByMobileResponse
+	7,  // 13: server.User.SendSms:output_type -> server.SendSmsResponse
+	10, // 14: server.User.MobileLogin:output_type -> server.LoginResponse
+	10, // 15: server.User.UsernameLogin:output_type -> server.LoginResponse
+	11, // 16: server.User.UserInfoUpdate:output_type -> server.UserInfoResponse
+	14, // 17: server.User.IsUsernameExist:output_type -> server.IsUsernameExistResponse
+	10, // [10:18] is the sub-list for method output_type
+	2,  // [2:10] is the sub-list for method input_type
 	2,  // [2:2] is the sub-list for extension type_name
 	2,  // [2:2] is the sub-list for extension extendee
 	0,  // [0:2] is the sub-list for field type_name
@@ -830,7 +927,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

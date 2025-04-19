@@ -7,7 +7,7 @@ import (
 
 func main() {
 	var c gateway.GatewayConf
-	conf.MustLoad("gateway/gateway.yaml", &c)
+	conf.MustLoad("gateway.yaml", &c)
 
 	gw := gateway.MustNewServer(c)
 	defer gw.Stop()

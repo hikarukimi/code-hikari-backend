@@ -4,14 +4,21 @@
 package handler
 
 import (
-	"code-hikari/user/api/internal/svc"
-	"github.com/zeromicro/go-zero/rest"
 	"net/http"
+
+	"code-hikari/user/api/internal/svc"
+
+	"github.com/zeromicro/go-zero/rest"
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/isUsernameExist",
+				Handler: IsUsernameExistHandler(serverCtx),
+			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/mobileLogin",

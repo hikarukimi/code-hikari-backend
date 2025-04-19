@@ -13,6 +13,7 @@ service User {
   rpc MobileLogin(MobileLoginRequest)returns (LoginResponse);
   rpc UsernameLogin(UsernameLoginRequest)returns (LoginResponse);
   rpc UserInfoUpdate(UserInfoUpdateRequest) returns (UserInfoResponse);
+  rpc IsUsernameExist(IsUsernameExistRequest)returns (IsUsernameExistResponse);
 }
 
 // Register 相关消息体
@@ -83,4 +84,11 @@ message UserInfoUpdateRequest{
   string mobile = 2;
   string password = 3;
   string avatar = 4;
+}
+
+message IsUsernameExistRequest{
+  string username=1;
+}
+message IsUsernameExistResponse{
+  bool Exist=1;
 }

@@ -14,19 +14,21 @@ import (
 )
 
 type (
-	FindByIdRequest       = server.FindByIdRequest
-	FindByIdResponse      = server.FindByIdResponse
-	FindByMobileRequest   = server.FindByMobileRequest
-	FindByMobileResponse  = server.FindByMobileResponse
-	LoginResponse         = server.LoginResponse
-	MobileLoginRequest    = server.MobileLoginRequest
-	RegisterRequest       = server.RegisterRequest
-	RegisterResponse      = server.RegisterResponse
-	SendSmsRequest        = server.SendSmsRequest
-	SendSmsResponse       = server.SendSmsResponse
-	UserInfoResponse      = server.UserInfoResponse
-	UserInfoUpdateRequest = server.UserInfoUpdateRequest
-	UsernameLoginRequest  = server.UsernameLoginRequest
+	FindByIdRequest         = server.FindByIdRequest
+	FindByIdResponse        = server.FindByIdResponse
+	FindByMobileRequest     = server.FindByMobileRequest
+	FindByMobileResponse    = server.FindByMobileResponse
+	IsUsernameExistRequest  = server.IsUsernameExistRequest
+	IsUsernameExistResponse = server.IsUsernameExistResponse
+	LoginResponse           = server.LoginResponse
+	MobileLoginRequest      = server.MobileLoginRequest
+	RegisterRequest         = server.RegisterRequest
+	RegisterResponse        = server.RegisterResponse
+	SendSmsRequest          = server.SendSmsRequest
+	SendSmsResponse         = server.SendSmsResponse
+	UserInfoResponse        = server.UserInfoResponse
+	UserInfoUpdateRequest   = server.UserInfoUpdateRequest
+	UsernameLoginRequest    = server.UsernameLoginRequest
 
 	User interface {
 		Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
@@ -36,6 +38,7 @@ type (
 		MobileLogin(ctx context.Context, in *MobileLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 		UsernameLogin(ctx context.Context, in *UsernameLoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 		UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*UserInfoResponse, error)
+		IsUsernameExist(ctx context.Context, in *IsUsernameExistRequest, opts ...grpc.CallOption) (*IsUsernameExistResponse, error)
 	}
 
 	defaultUser struct {
@@ -82,4 +85,9 @@ func (m *defaultUser) UsernameLogin(ctx context.Context, in *UsernameLoginReques
 func (m *defaultUser) UserInfoUpdate(ctx context.Context, in *UserInfoUpdateRequest, opts ...grpc.CallOption) (*UserInfoResponse, error) {
 	client := server.NewUserClient(m.cli.Conn())
 	return client.UserInfoUpdate(ctx, in, opts...)
+}
+
+func (m *defaultUser) IsUsernameExist(ctx context.Context, in *IsUsernameExistRequest, opts ...grpc.CallOption) (*IsUsernameExistResponse, error) {
+	client := server.NewUserClient(m.cli.Conn())
+	return client.IsUsernameExist(ctx, in, opts...)
 }

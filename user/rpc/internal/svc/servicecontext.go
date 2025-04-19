@@ -2,8 +2,9 @@ package svc
 
 import (
 	"code-hikari/common-go"
-	model "code-hikari/common-go/model"
+	"code-hikari/common-go/model"
 	"code-hikari/user/rpc/internal/config"
+	"context"
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/driver/postgres"
@@ -77,6 +78,14 @@ func initRedis(c config.Config) *redis.Client {
 		Password: "", // 没有密码，默认值
 		DB:       0,  // 默认DB 0
 	})
+	ctx := context.Background()
+	err := rdb.Del(ctx, common.UsernameFilter).Err()
+	if err != nil {
+		fmt.Println("布隆过滤器删除失败" + err.Error())
+	}
+	if err = rdb.BFReserve(ctx, common.UsernameFilter, 0.0001, 1000000).Err(); err != nil {
+		fmt.Println("布隆过滤器初始化失败" + err.Error())
+	}
 	fmt.Println("Successfully connected to the Redis!")
 	return rdb
 }

@@ -38,6 +38,12 @@ type (
 		Mobile   string `json:"mobile"`
 		Avatar   string `json:"avatar"`
 	}
+	IsUsernameExistRequest {
+		Username string `json:"username"`
+	}
+	IsUsernameExistResponse {
+		Exist bool `json:"exist"`
+	}
 )
 
 @server (
@@ -55,6 +61,9 @@ service applet-api {
 
 	@handler MobileLoginHandler
 	post /mobileLogin (MobileLoginRequest) returns (LoginResponse)
+
+	@handler IsUsernameExistHandler
+	post /isUsernameExist (IsUsernameExistRequest) returns (IsUsernameExistResponse)
 }
 
 @server (

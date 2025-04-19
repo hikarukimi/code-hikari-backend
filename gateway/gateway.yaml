@@ -20,3 +20,5 @@ Upstreams:
         Path: /v1/usernameLogin
       - Method: POST
         Path: /v1/mobileLogin
+      - Method: POST
+        Path: /v1/isUsernameExist

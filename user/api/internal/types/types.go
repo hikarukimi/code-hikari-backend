@@ -3,6 +3,14 @@
 
 package types
 
+type IsUsernameExistRequest struct {
+	Username string `json:"username"`
+}
+
+type IsUsernameExistResponse struct {
+	Exist bool `json:"exist"`
+}
+
 type LoginResponse struct {
 	UserId int64  `json:"userId"`
 	Token  string `json:"token"`

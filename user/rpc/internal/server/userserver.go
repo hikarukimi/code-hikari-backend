@@ -57,3 +57,8 @@ func (s *UserServer) UserInfoUpdate(ctx context.Context, in *server.UserInfoUpda
 	l := logic.NewUserInfoUpdateLogic(ctx, s.svcCtx)
 	return l.UserInfoUpdate(in)
 }
+
+func (s *UserServer) IsUsernameExist(ctx context.Context, in *server.IsUsernameExistRequest) (*server.IsUsernameExistResponse, error) {
+	l := logic.NewIsUsernameExistLogic(ctx, s.svcCtx)
+	return l.IsUsernameExist(in)
+}
