@@ -1,0 +1,17 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: ai
+  cloud:
+    consul:
+      host: 192.168.200.138
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: deepseek-r1:1.5b       # 与本地模型名称对应
