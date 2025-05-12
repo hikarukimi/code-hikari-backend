@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class AiDto {
-    private String Msg;
+    private String msg;
 }
