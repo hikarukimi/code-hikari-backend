@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.code.ai.mapper.AiMapper">
+    <!-- 查询使用 select标签
+            id = 方法名
+            resultType = 返回值类型
+            标签内编写SQL语句
+     -->
+    <sql id="conlum">
+        id,user_id,title,problem,answer,created_at,update_at,deleted_at
+    </sql>
+</mapper>
