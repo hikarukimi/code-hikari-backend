@@ -21,5 +21,8 @@ spring:
     password: root
     driver-class-name: org.postgresql.Driver
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.code.commen-java.pojo
+  type-aliases-package: com.code.commen.pojo
+  global-config:
+    db-config:
+      id-type: auto # 全局主键策略，auto表示数据库ID自增
+

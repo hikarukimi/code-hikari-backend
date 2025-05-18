@@ -14,12 +14,4 @@ spring:
         health-check-interval: 15s
         health-check-timeout: 10s  # 适当延长超时
         health-check-critical-timeout: 2m  # 持续失败2分钟才标记为critical
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info  # 暴露健康检查端点
-  endpoint:
-    health:
-      show-details: always    # 显示详细健康信息
 
